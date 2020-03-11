@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.parsers import FileUploadParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from mess.serializer import MessSerializer
@@ -21,6 +22,10 @@ class MessApiView(APIView):
     def post(self, request):
         # method: POST
         # Add details about Mess
+        parsers_class = (FileUploadParser,)
+
+        file = request.FILES["profile_img"]
+        print(file)
         serializer = MessSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -47,8 +52,10 @@ class MessApiViewDetail(APIView):
         return Response(serializer.data)
 
     def put(self, request, id):
+        # Method : PUT
+        # Update a record
         queryset = self.get_detail(id)
-        serializer = MessSerializer(queryset, data=request.data)
+        serializer = MessSerializer(queryset, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -56,6 +63,8 @@ class MessApiViewDetail(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, id):
+        # Method: DELETE
+        # Delete a record
         queryset = self.get_detail(id)
         queryset.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
