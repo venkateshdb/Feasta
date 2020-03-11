@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81b3d278-579d-4849-9a48-b02649ffd8c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mess/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feasta/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/feasta/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1583907528606</updated>
-      <workItem from="1583907535757" duration="3682000" />
+      <workItem from="1583907535757" duration="3827000" />
     </task>
     <servers />
   </component>
