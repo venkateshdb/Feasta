@@ -1,1 +1,3 @@
 venv/*
+feasta/__pycache__/*
+.idea/*
