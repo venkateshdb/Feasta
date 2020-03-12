@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from mess.models import Mess, Menu, Price
+from mess.models import Mess, Menu
 
 
 class MessSerializer(serializers.ModelSerializer):
@@ -11,6 +11,10 @@ class MessSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mess
         fields = "__all__"
+
+    # @staticmethod
+    # def get_price():
+    #     return Menu.objects.select_related('price')
 
 
 class MenuSerializer(serializers.ModelSerializer):
@@ -23,11 +27,3 @@ class MenuSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class PriceSerializer(serializers.ModelSerializer):
-    """
-    serialize Menu details
-    """
-
-    class Meta:
-        model = Price
-        fields = "__all__"
