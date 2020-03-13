@@ -3,3 +3,4 @@ feasta/__pycache__/*
 */__pycache__/*
 .idea/*
 mess/migrations/
+.vscode/*
