@@ -2,15 +2,18 @@ from rest_framework import status
 from rest_framework.parsers import FileUploadParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from mess.serializer import MessSerializer
-from mess.models import Mess, Menu, Price
+from mess.serializer import MessSerializer, MenuSerializer
+from mess.models import Mess, Menu
 from django.http import Http404
+from rest_framework import viewsets
 
 
-class MessApiView(APIView):
+class MessApiView(viewsets.ModelViewSet):
     """
     This view will return data about mess
     """
+    queryset = Mess.objects
+    serializer_class = MessSerializer
 
     def get(self, request):
         # method: GET
@@ -33,25 +36,19 @@ class MessApiView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-class MessApiViewDetail(APIView):
     """
     This view will return data about a give mess
     ,update and delete the data
     """
 
-    def get_detail(self, id):
-        try:
-            return Mess.objects.get(pk=id)
-        except Mess.DoesNotExist:
-            raise Http404
-
-    def get(self, request, id):
+    def retrieve(self, request, id):
+        # Method: GET
+        # Return data about particular mess
         queryset = self.get_detail(id)
         serializer = MessSerializer(queryset)
         return Response(serializer.data)
 
-    def put(self, request, id):
+    def update(self, request, id):
         # Method : PUT
         # Update a record
         queryset = self.get_detail(id)
@@ -62,9 +59,81 @@ class MessApiViewDetail(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, id):
+    def destroy(self, request, id):
         # Method: DELETE
         # Delete a record
         queryset = self.get_detail(id)
         queryset.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(data={'status': 'Done'}, status=status.HTTP_204_NO_CONTENT)
+
+    def get_detail(self, mess_id):
+        try:
+            return Mess.objects.get(id=mess_id)
+        except Mess.DoesNotExist:
+            raise Http404
+
+
+class MenuApiView(viewsets.ModelViewSet):
+    """
+    This view will return menu from mess
+    """
+    queryset = Menu.objects
+    serializer_class = MenuSerializer
+
+    def get(self, request):
+        # Method: GET
+        # Return mess menu
+        queryset = Menu.objects.all()
+        serializer = MenuSerializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        # Method: POST
+        # Add menu for a given mess
+
+        serializer = MenuSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # This view will return data about a particular menu
+        # ,update and delete the data
+
+    def get_data(self, request, menu_id):
+        # Method: GET
+        # @param: mess_id( !pass mess id to api endpoint)
+        # @return: List all mess with that mess_id
+        queryset = Menu.objects.filter(mess_id=menu_id)
+        serializer = MenuSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def update(self, request, menu_id):
+        # Method : PUT
+        # Update a menu
+        # @param: menu_id
+        # @return:  Updated a record of menu
+        queryset = self.get_detail(menu_id)
+        serializer = MenuSerializer(queryset, data=request.data, partial=True)
+        print(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, menu_id):
+        print(menu_id)
+        # Method: DELETE
+        # Delete a record
+        queryset = self.get_detail(menu_id)
+        queryset.delete()
+        return Response(data={'status': 'Done'}, status=status.HTTP_204_NO_CONTENT)
+
+    def get_detail(self, menu_id):
+        try:
+            return Menu.objects.get(menu_id= menu_id)
+        except Menu.DoesNotExist:
+            raise Http404
+
