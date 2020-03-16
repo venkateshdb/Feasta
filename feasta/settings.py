@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
-    'mess.apps.MessConfig'
+    'mess.apps.MessConfig',
+    'login.apps.LoginConfig',
+    'register.apps.RegisterConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'feasta.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
