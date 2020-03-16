@@ -5,6 +5,10 @@ from mess.serializer import MessSerializer, MenuSerializer
 from mess.models import Mess, Menu
 from django.http import Http404
 from rest_framework import viewsets
+from django.views.generic import TemplateView
+
+class HomePageView(TemplateView):
+    template_name = 'base.html'
 
 
 class MessApiView(viewsets.ModelViewSet):

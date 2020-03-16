@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{%static 'css/register.css' %}">
+    <div class="container">
+        <div class="img">
+            <img src="{% static 'img/reg-1.svg' %}">
+        </div>
+        <div class="reg-container">
+            <form action='register'>
+                <img class = "avatar" src="{% static 'img/profile.svg' %}">
+                <h2>Register</h2>
+                <div class="reg div one">
+                    <div>
+                        <h5>First Name</h5>
+                        <input type="text" class="input">
+                    </div>
+                    <div>
+                        <h5>Last Name</h5>
+                        <input type="text" class="input">
+                    </div>
+                    <div>
+                        <h5>Email</h5>
+                        <input type="email" class="input">
+                    </div>
+                    <div>
+                        <h5>Contact</h5>
+                        <input type="text" class="input">
+                    </div>
+                    <div>
+                        <h5>Stay</h5>
+                        <input type="text" class="input">
+                    </div>
+                    <div>
+                        <h5>USERNAME</h5>
+                        <input type="text" class="input">
+                    </div>
+                    <div>
+                        <h5>PASSWORD</h5>
+                        <input type="password" class="input">
+                    </div>
+                    <div>
+                        <h5>CONFIRM PASSWORD</h5>
+                        <input type="password" class="input">
+                    </div>
+                </div>
+                <input type="submit" class="btn" value="REGISTER">
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
