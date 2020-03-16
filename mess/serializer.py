@@ -12,6 +12,9 @@ class MessSerializer(serializers.ModelSerializer):
         model = Mess
         fields = "__all__"
 
+    # def to_representation(self, data):
+    #     res = super(MessSerializer, self).to_representation(data)
+    #     return {res['mess_name']: res}
     # @staticmethod
     # def get_price():
     #     return Menu.objects.select_related('price')
@@ -25,5 +28,3 @@ class MenuSerializer(serializers.ModelSerializer):
     class Meta:
         model = Menu
         fields = "__all__"
-
-

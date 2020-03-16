@@ -1,6 +1,5 @@
 from rest_framework import status
 from rest_framework.parsers import FileUploadParser
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from mess.serializer import MessSerializer, MenuSerializer
 from mess.models import Mess, Menu
@@ -90,7 +89,7 @@ class MenuApiView(viewsets.ModelViewSet):
     def post(self, request):
         # Method: POST
         # Add menu for a given mess
-
+        print(request.data)
         serializer = MenuSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -133,7 +132,6 @@ class MenuApiView(viewsets.ModelViewSet):
 
     def get_detail(self, menu_id):
         try:
-            return Menu.objects.get(menu_id= menu_id)
+            return Menu.objects.get(menu_id=menu_id)
         except Menu.DoesNotExist:
             raise Http404
-
