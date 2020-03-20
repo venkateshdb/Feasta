@@ -9,7 +9,7 @@ from rest_framework import viewsets
 from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
-    template_name = 'base.html'
+    template_name = 'profile.html'
 
 
 class MessApiView(viewsets.ModelViewSet):
