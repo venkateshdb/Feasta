@@ -55,8 +55,15 @@
                     </li>
                 </div>
                 <div class='nav--right'>
+                    {% if user.is_authenticated %}
+                    <span>
+                        <li>Hii, {{ user.Username }}</li>
+                        <a href="{% url 'profile' %}">View Profile</a>
+                    </span>
+                    {% else %}
                     <a href="{% url 'register' %}" value='Sign up' class='login'>Sign up</a>
                     <a href="{% url 'login' %}" value='Login' class='login'>Login</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
@@ -67,10 +74,5 @@
     </div>
     {% block script %}
     {% endblock script %}
-    <!-- <div>
-        Hungry?
-        See what has been cooked in nearby mess.
-        Choose your favourite Menu and then head towards the mess.
-    </div> -->
 </body>
 </html>
