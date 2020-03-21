@@ -8,11 +8,7 @@ from rest_framework import viewsets
 from django.views.generic import TemplateView
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
-
-
-class ProfileView(TemplateView):
-    template_name = 'profile.html'
+    template_name = 'base.html'
 
 
 class MessApiView(viewsets.ModelViewSet):
@@ -86,6 +82,7 @@ class MenuApiView(viewsets.ModelViewSet):
     """
     queryset = Menu.objects
     serializer_class = MenuSerializer
+
 
     def get(self, request):
         # Method: GET

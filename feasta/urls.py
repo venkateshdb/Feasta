@@ -21,13 +21,24 @@ schema_view = get_schema_view(
 )
 
 
+def api(prefix=None):
+    """
+    :param prefix:
+    :return: Base url for API
+    """
+    if prefix is None:
+        return "api/v1/"
+    else:
+        return "api/v1/{}".format(prefix)
+
+
 urlpatterns = [
     path('', include('mess.urls')),
     path('login/', include('login.urls')),
     path('admin/', admin.site.urls),
     path('register/', include('register.urls')),
-    path('api/v1/', include('mess.urls')),
-    url(r'^(?P<path>.*)/$', include('mess.urls')),
+    path(api(), include('mess.urls')),
+    url(r'^(?P<path>.*)/', include('mess.urls')),
     url(r'^swagger(?P<format>\.json|\.yaml)$',
         schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger',

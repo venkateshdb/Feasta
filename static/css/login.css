@@ -9,8 +9,8 @@ body{
 }
 
 .container{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 90vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap : 7;
@@ -18,8 +18,8 @@ body{
 }
 
 .img{
-    margin-top: 50px;
-    margin-left: 100px;
+    /* display: flex; */
+    margin-top: 150px;
     justify-content: flex-end;
     align-items: center;
 }
@@ -36,16 +36,9 @@ body{
 
 form{
     width: 360px;
-    margin: 50px 150px;
+    margin: 150px;
 }
-.forgot{
-    padding:10px;
-}
-.forgot a{
-    text-decoration: underline;
-    color:rgb(1, 111, 255);
-    padding:10px;
-}
+
 .avatar{
     width: 100px;
 }
@@ -98,11 +91,11 @@ form h2{
 }
 
 .input-div.one{
-    margin-top: 30px;
+    margin-top: 0;
 }
 
 .input-div.two{
-    margin-bottom: 25px;
+    margin-bottom: 4px;
 }
 
 .i{
@@ -157,6 +150,21 @@ form h2{
     color: #555;
     font-family: 'Poppins',sans-serif;
 }
+
+
+a{
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    color: #999;
+    font: 0.9rem;
+    transition: .3%;
+}
+
+a:hover{
+    color: #38d39f;
+}
+
 
 .btn{
     display: block;

@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -25,8 +25,9 @@ SECRET_KEY = '*dwa-ldz63sd^1$&v^x$q-qwldgpv!7miwrs89n(kjsf_+iuv4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+#
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
+                 'feasta.herokuapp.com', '192.168.43.28']
 
 # Application definition
 
@@ -37,26 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # 3rd Party
+    'whitenoise.runserver_nostatic',
     'rest_framework',
     'drf_yasg',
-    << << << < HEAD
     'corsheaders',
     'mess',
     'login',
     'register',
-    == == == =
-
-    # local
-    'mess.apps.MessConfig',
-    'login.apps.LoginConfig',
-    'register.apps.RegisterConfig',
-    >>>>>> > 85ea6f4bb7ff87fee1c385e246224cb8d5ae2b09
 ]
 
-
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -65,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'feasta.urls'
@@ -98,7 +91,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -117,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -131,14 +122,18 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+PROJECT_ROOT = os.path.join(os.path.abspath(__file__))
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)

@@ -1,10 +1,9 @@
 from django.urls import path
 from mess.views import MessApiView, MenuApiView
-from .views import HomePageView,ProfileView
+from .views import HomePageView
 
 urlpatterns = [
     path('', HomePageView.as_view(), name = 'home'),
-    path('profile/', ProfileView.as_view(), name = 'profile'),
     path('get-mess/', MessApiView.as_view({'get': 'get', 'post': 'post'}), name="mess-api-view"),
     path('get-mess/<str:id>/', MessApiView.as_view({
         'get': 'retrieve',

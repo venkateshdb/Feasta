@@ -11,7 +11,7 @@ class Mess(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     mess_name = models.CharField(max_length=200, null=False)
     timing = models.TimeField(auto_now_add=False, blank=False)
-
+    # start_end_timing = models.TimeField(auto_now_add=False, blank=False)
     longitude = models.CharField(max_length=150, blank=True)
     latitude = models.CharField(max_length=150, blank=True)
     address = models.CharField(max_length=300, blank=False)
@@ -24,6 +24,9 @@ class Mess(models.Model):
 
     one_time = models.IntegerField(blank=False)
     monthly = models.IntegerField(blank=False)
+
+    class Meta:
+        unique_together = ('address', 'id')
 
     def __str__(self):
         return self.mess_name
@@ -40,7 +43,7 @@ class Menu(models.Model):
     item = models.CharField(max_length=200, blank=False)
 
     # foreign key
-    mess_id = models.ForeignKey(Mess, on_delete=models.CASCADE)
+    mess_id = models.ForeignKey(Mess, on_delete=models.CASCADE, to_field='id')
 
     def __str__(self):
         return self.item
@@ -53,4 +56,15 @@ class Offer(models.Model):
     offer = models.CharField(max_length=100)
     offer_img = models.FileField()
     coupon_code = models.CharField(max_length=30)
-    #valid_till = models.DateTimeField(default=0)
+    # valid_till = models.DateTimeField(default=0)
+#
+# class Feedback(models.Model):
+#     """
+#     store rating and review for a mess
+#     """
+#     mess_id = models.UUIDField()
+#     rating = models.IntegerField()
+#     review = models.CharField(max_length=500)
+#
+#     #foreign field to user id
+#

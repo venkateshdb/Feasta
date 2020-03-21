@@ -25,6 +25,19 @@ class MenuSerializer(serializers.ModelSerializer):
     serialize Menu details
     """
 
+    address = serializers.SerializerMethodField()
+    timing = serializers.SerializerMethodField()
+
+    # menu = serializers.CharField(source='item') # change name from item to menu
+
+    def get_address(self, obj):
+        return obj.mess_id.address
+
+
+    def get_timing(self, obj):
+        return obj.mess_id.timing
+
     class Meta:
         model = Menu
-        fields = "__all__"
+        fields = ('item', 'menu_id', 'mess_id', 'address', 'timing')
+
