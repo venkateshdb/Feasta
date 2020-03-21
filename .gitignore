@@ -1,8 +1,7 @@
 venv/*
-feasta/__pycache__/*
-*/__pycache__/*
-__pycache__/*
-.idea/*
-.vscode/*
-mess/migrations/
-.vscode/*
+__pycache__/
+.idea
+.vscode
+migrations
+assets
+db.sqlite3
