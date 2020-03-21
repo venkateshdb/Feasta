@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet"> 
     <title>Feasta</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    {% block css %}
+    {% endblock css%}
 </head>
 <body>
     <header>
@@ -40,30 +43,36 @@
                         <a href="{% url 'mess-api-view' %}">
                             <img class="icons" src="{% static 'img/home-2.png' %}">
                             <img class="icons-h" src="{% static 'img/home-1.png' %}">
-                            <span>Mess-Api View</span>
+                            <span>Mess-Api</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'menu-api-view' %}">
                             <img class="icons" src="{% static 'img/home-2.png' %}">
                             <img class="icons-h" src="{% static 'img/home-1.png' %}">
-                            <span>Menu-Api View</span>
+                            <span>Menu-Api</span>
                         </a>
                     </li>
                 </div>
                 <div class='nav--right'>
+                    {% if user.is_authenticated %}
+                    <span>
+                        <li>Hii, {{ user.Username }}</li>
+                        <a href="{% url 'profile' %}">View Profile</a>
+                    </span>
+                    {% else %}
                     <a href="{% url 'register' %}" value='Sign up' class='login'>Sign up</a>
                     <a href="{% url 'login' %}" value='Login' class='login'>Login</a>
+                    {% endif %}
                 </div>
             </div>
         </nav>
     </header>
-    {% block content %}
-    {% endblock content %}
-    <!-- <div>
-        Hungry?
-        See what has been cooked in nearby mess.
-        Choose your favourite Menu and then head towards the mess.
-    </div> -->
+    <div class="content">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    {% block script %}
+    {% endblock script %}
 </body>
 </html>

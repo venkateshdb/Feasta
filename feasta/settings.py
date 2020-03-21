@@ -37,12 +37,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd Party
     'rest_framework',
     'drf_yasg',
+    << << << < HEAD
     'corsheaders',
     'mess',
     'login',
     'register',
+    == == == =
+
+    # local
+    'mess.apps.MessConfig',
+    'login.apps.LoginConfig',
+    'register.apps.RegisterConfig',
+    >>>>>> > 85ea6f4bb7ff87fee1c385e246224cb8d5ae2b09
 ]
 
 
@@ -130,4 +140,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')

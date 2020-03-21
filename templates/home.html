@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <div class="tagline">
+        <h1>Feeling Hungry?</h1>
+        See what has been cooked in nearby mess.
+        <br>
+        Choose your favourite Menu and then head towards the mess.
+    </div> 
+{% endblock content %}

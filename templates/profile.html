@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <div class="profile">
+        <div class="profile-nav">
+            <div class="profile--head">
+                <img src="{% static 'img/profile.svg' %}" class="profile-photo">
+                <span class="profile-name">MESS Name</span>
+                <span class="username">@username</span>
+                <span class="email">messowner@gmail.com</span>
+            </div>
+            <div class="nav-item" id="1">View Profile
+            </div>
+            <div class="nav-item" id="2">Add Today's Menu
+            </div>
+            <div class="nav-item" id="3">Past Menus
+            </div>
+            <div class="nav-item" id="4">Mess Ratings
+            </div>
+            <div class="nav-item" id="5">View Offers
+            </div>
+        </div>
+        <div class="description">
+            <div id="details" class="nav-content">
+                <h1>Your Profile:</h1>
+                <div>
+                    <img src="{% static 'img/profile.svg' %}" class="profile-photo">
+                </div>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" readonly>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" readonly>
+                </div>
+                <div>
+                    <label for="mobile">Mobile:</label>
+                    <input type="text" name="mobile" readonly>
+                </div>
+                <hr>
+                <div>
+                    <label for="mess">Mess Name:</label>
+                    <input type="text" name="mess" readonly>
+                </div>
+                <div>
+                    <label for="address">Address:</label>
+                    <textarea name="address"></textarea>
+                </div>
+            </div>
+            <div id="add-menu" class="nav-content hide">
+                Add Menu option will be added shortly.
+            </div>
+            <div id="past-menus" class="nav-content hide">
+                Past Menu's will be shown here and can be added as today's menu.
+            </div>
+            <div id="ratings" class="nav-content hide">
+                Your Mess Ratings will be shown here among all other mess of campus.
+            </div>
+            <div id="offers" class="nav-content hide">
+                No offers added till now.
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+{% block script %}
+    <script>
+        var previous;
+          previous=$('.nav-content').get(0);
+          $(function(){
+              $('.nav-item').click(function(){
+                  var a = $(this).attr('id');
+                //   console.log(a);
+                //   console.log($('.nav-content').get(a-1));
+                  var display = $('.nav-content').get(a-1);
+                  previous.className += " hide";
+                  display.className="nav-content";
+                  previous=display;
+              })
+          })
+    </script>
+{% endblock script %}
