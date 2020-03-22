@@ -1,78 +1,31 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="feasta">
+
 <head>
+    <base href="/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet"> 
+    <meta name="theme-color" content="#86deff">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+    <script src="{% static 'app/lib/angular.js' %}" type="application/javascript"></script>
+    <script src="{% static 'app/lib/jquery.min.js' %}" type="application/javascript"></script>
+    <script src="{% static 'app/lib/angular-route.js' %}" type="application/javascript"></script>
+    <script src="{% static 'app/app.module.js' %}" type="application/javascript"></script>
+    <script src="{% static 'app/controller/getMessController.js' %}" type="application/javascript"></script>
+    <script src="{% static 'app/controller/getMenuController.js' %}" type="application/javascript"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css">
+    <link rel="icon" href="{% static 'img/logo/logo1.png' %}">
     <title>Feasta</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-    {% block css %}
-    {% endblock css%}
 </head>
+
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="navbar--head">
-                <div class='heading'>
-                    <a href="{% url 'home' %}" class="text">Feasta</a>
-                </div>
-                <div class="searchbar">
-                    <input type='search' class="search" placeholder="Search..." />
-                    <button class='searchbtn'><img src="{% static 'img/search.png' %}" class="icon"></button>
-                </div>
-            </div>
-            <div class="topnav">
-                <div class="links">
-                    <li>
-                        <a href="{% url 'home' %}">
-                            <img class="icons" src="{% static 'img/home-2.png' %}">
-                            <img class="icons-h" src="{% static 'img/home-1.png' %}">
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="admin/">
-                            <img class="icons" src="{% static 'img/home-2.png' %}">
-                            <img class="icons-h" src="{% static 'img/home-1.png' %}">
-                            <span>Admin</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'mess-api-view' %}">
-                            <img class="icons" src="{% static 'img/home-2.png' %}">
-                            <img class="icons-h" src="{% static 'img/home-1.png' %}">
-                            <span>Mess-Api</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'menu-api-view' %}">
-                            <img class="icons" src="{% static 'img/home-2.png' %}">
-                            <img class="icons-h" src="{% static 'img/home-1.png' %}">
-                            <span>Menu-Api</span>
-                        </a>
-                    </li>
-                </div>
-                <div class='nav--right'>
-                    {% if user.is_authenticated %}
-                    <span>
-                        <li>Hii, {{ user.Username }}</li>
-                        <a href="{% url 'profile' %}">View Profile</a>
-                    </span>
-                    {% else %}
-                    <a href="{% url 'register' %}" value='Sign up' class='login'>Sign up</a>
-                    <a href="{% url 'login' %}" value='Login' class='login'>Login</a>
-                    {% endif %}
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="content">
-        {% block content %}
-        {% endblock content %}
-    </div>
-    {% block script %}
-    {% endblock script %}
+    <ng-view></ng-view>
+    <footer>
+        <div class="wrapper footer">
+            <p>&copy; 2020 Feasta All rights reserved.</p>
+        </div>
+    </footer>
 </body>
+
 </html>
