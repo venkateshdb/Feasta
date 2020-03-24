@@ -11,13 +11,19 @@ feasta.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
             templateUrl: "static/app/app-template/index.html"
         })
         .when('/home/', {
-            title: 'HOme',
+            title: 'Home',
             templateUrl: "static/app/app-template/home.html",
             controller: "getMessController"
         })
         .when('/menu/', {
             templateUrl: "static/app/app-template/menu.html",
             controller: "getMenuController"
+        })
+        .when('/profile/',{
+            templateUrl: "static/app/app-template/profile.html",
+        })
+        .when('/login/',{
+            templateUrl: "static/app/app-template/login.html",
         })
     // .otherwise('/', {
     //     redirectTo: "/"

@@ -26,7 +26,7 @@ SECRET_KEY = '*dwa-ldz63sd^1$&v^x$q-qwldgpv!7miwrs89n(kjsf_+iuv4'
 DEBUG = True
 
 #
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
                  'feasta.herokuapp.com', '192.168.43.28']
 
 # Application definition
