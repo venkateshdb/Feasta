@@ -1,6 +1,6 @@
 var feasta = angular.module("feasta", ['ngRoute'])
 
-feasta.constant('BASE_URL', "http://localhost:3000/api/v1/");
+// feasta.constant('BASE_URL', "http://localhost:3000/api/v1/");
 
 
 feasta.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -18,6 +18,10 @@ feasta.config(['$routeProvider', '$locationProvider', function ($routeProvider, 
         .when('/menu/', {
             templateUrl: "static/app/app-template/menu.html",
             controller: "getMenuController"
+        })
+        .when('/register/', {
+            templateUrl : "static/app/app-template/register.html",
+            controller : "getRegisterController"
         })
     // .otherwise('/', {
     //     redirectTo: "/"

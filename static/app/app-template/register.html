@@ -1,3 +1,45 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<!-- <script>
+    reg = angular.module("reg", []);
+
+    reg.controller("RegisterController", function ( $scope, $http){
+
+        $scope.SendData = function () {
+            // use $.param jQuery function to serialize data from JSON
+            var data = $.param({
+                first_name : $scope.first_name,
+                last_name  : $scope.last_name,
+                email      : $scope.email,
+                phone_no   : $scope.phone_no,
+                address    : $scope.address,
+                location   : $scope.location,
+                password1  : $scope.password1,
+                password2  : $scope.password2
+            });
+
+            var config = {
+                headers : {
+                    'Content-Type' : 'application/x-www-urlencoded;charset=utf-8;'
+                }
+            }
+
+            $http.post('/get-user', data, config)
+                .success(function (data, status, headers, config) {
+                    $scope.PostDataResponse = data;
+                })
+
+                .error(function (data, status, headers, config) {
+                    $scope.ResponseDetails = "DATA : " + data +
+                    "<hr />status : " + status  +
+                    "<hr />config : " + config;
+                });
+        };
+
+    });
+</script> -->
+
+
+<link rel="stylesheet" type="text/css" href='/static/css/register.css'>
 <style>
     body {
         background-color: rgb(244, 244, 244);
@@ -72,114 +114,30 @@
 
     /* main content */
     main {
-        margin-top: 5em;
+        margin-top: 3em;
     }
 
-    .offer {
-        background: rgb(14, 13, 38);
-    }
-
-    .offer-container {
-        display: grid;
-        margin: 0 60px 0px 60px;
-        grid-auto-flow: column;
-        overflow-x: scroll;
-        padding: 60px 0px;
-    }
-
-    .offer-card {
-        width: 250px;
-        justify-self: center;
-    }
-
-    .offer-card>img {
-        width: 100%;
-    }
-
-    .mess {
-        margin: 20px 70px 70px 70px;
-    }
-
-    .mess>h1 {
-        text-align: center;
-        font-size: 40px;
-        color: black !important;
-    }
-
-    .mess-container {
-        display: grid;
-        grid-auto-flow: row;
-        margin-top: 2em;
-        justify-content: center;
-    }
-
-    .mess-card {
-        display: grid;
-        grid-auto-flow: row;
-        grid-template-rows: 200px 1fr 35px;
-        width: 400px;
-        padding: 8px 12px;
-        background-color: rgb(255, 255, 255);
-        border: 1px solid rgb(255, 255, 255);
-        transition: all 0.3s ease;
-        margin-bottom: 3em;
-        border-radius: 2px;
-    }
-
-    .mess-card:hover {
-        border-color: rgb(211, 213, 223);
-        box-shadow: 0 6px 11px 6px rgba(218, 220, 230, .6);
-    }
-
-    .mess-card .mess-info {
-        padding: 1px;
-        margin-top: 10px;
+    .top-container {
         position: relative;
     }
 
-    .mess-card .img {
-        width: 100%;
-        border-radius: 4px;
+    .top-container .img {
+        height: 320px;
     }
 
-    .mess-card p.address {
-        margin-top: 5px;
-        margin-bottom: 10px;
-    }
-
-    h1.mess-name {
-        font-size: 30px;
-        color: rgb(65, 43, 43);
-    }
-
-    p.type {
-        font-size: 13px;
-        font-weight: lighter;
-        margin-top: -3px;
-        color: rgb(158, 159, 157);
-    }
-
-    .rating {
+    .top-container .arrow svg {
         position: absolute;
-        background: rgb(71, 225, 71);
-        right: 10px;
-        top: 12px;
-        padding: 3px 5px;
-        border-radius: 2px;
-        color: white;
+        transform: rotate(180deg);
+        background-color: rgb(255, 255, 255);
+        padding: 8px 8px;
+        left: 40px;
+        top: -308px;
+        border-radius: 50px;
+        transition: all 0.3s ease;
     }
 
-    .rating span {
-        position: relative;
-        top: 3px;
-    }
-
-    .price {
-        background: rgba(255, 165, 0, 0);
-        margin-top: -4px;
-        border-top: .3px solid rgb(209, 204, 204);
-        padding: 10px 0 0 0;
-        color: rgb(46, 47, 202);
+    .top-container .arrow svg:hover {
+        box-shadow: 0px -2px 6px 5px #0000001f;
     }
 
     #bottom {
@@ -188,11 +146,11 @@
 
     @media only screen and (max-width: 768px) {
         #top {
-            position: relative;
+            display: none;
         }
 
         main {
-            margin-top: 2em;
+            margin-top: 0;
         }
 
         .navbar .logo {
@@ -200,18 +158,10 @@
             margin-left: 1em !important;
         }
 
-        .offer-container {
-            margin: 0px 0px 0px 15px;
-            grid-gap: 20px;
-        }
 
-        .mess {
-            margin: 20px 7px 0 7px;
-        }
-
-        .mess-card {
-            width: auto;
-            grid-template-rows: 200px 2fr 35px;
+        .top-container .arrow svg {
+            top: -325px;
+            left: 15px;
         }
 
         /*mobile bottom nav*/
@@ -260,7 +210,7 @@
                     </a>
                 </li>
                 <li class="link four">
-                    <a href="/register">
+                    <a href="#">
                         Signup
                     </a>
                 </li>
@@ -280,7 +230,7 @@
 
             </div>
         </a>
-        <a href="/favorite/">
+        <a href="/favorite">
             <div class="icon">
                 <svg width="30" height="30" viewBox="0 0 26 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -290,7 +240,7 @@
 
             </div>
         </a>
-        <a href="/account/">
+        <a href="/account">
             <div class="icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -303,61 +253,50 @@
 
     </nav>
 </header>
+
 <main>
-    <section class="offer">
-        <div class="offer-container">
-            <div class="offer-card">
-                <img src="static/img/offers/cwkxw2ugoqnao9gu5mta.jpg" alt="offer">
-            </div>
-            <div class="offer-card">
-                <img src="static/img/offers/hj9juelh1mxlrhappx6a.jpg" alt="offer">
-            </div>
-            <div class="offer-card">
-                <img src="static/img/offers/v3wij0yymhoyanqsyd2a.jpg" alt="offer">
-            </div>
-            <div class="offer-card">
-                <img src="static/img/offers/xe1gn45ahtoiqty5g9b7.jpg" alt="offer">
-            </div>
+    <div class="container">
+        <div class="img">
+            <img src='/static/img/reg-1.svg'>
         </div>
-    </section>
-
-
-    <section class="mess">
-        <h1>Explore Mess</h1>
-        <div class="mess-container">
-
-            <div ng-repeat="mess in Mess">
-                <a href="/menu/?messid={{mess.id}}">
-                    <div class="mess-card">
-                        <div class="img"
-                            style="background-image:url(static/img/mess/test.jpg);background-repeat: no-repeat; background-size: cover;">
-                        </div>
-                        <div class="id" ng-model="messid" data-id="{{mess.id}}" style="display: none;"></div>
-                        <span class="mess-info">
-                            <h1 class="mess-name">{{mess.mess_name}}</h1>
-                            <p class="type">{{mess.type}}</p>
-                            <p class="address">{{mess.address}}</p>
-                            <div class="rating">
-                                {{mess.rating}}
-                                <span>
-                                    <svg viewBox="0 0 24 24" fill="#767676" aria-hidden="true" height="16" width="16"
-                                        style="flex-shrink: 0;">
-                                        <title></title>
-                                        <path
-                                            d="M12.911 2.588a1 1 0 0 0-1.822 0l-2.273 5.03-5.486.607a1 1 0 0 0-.563 1.733l4.081 3.716-1.117 5.405a1 1 0 0 0 1.474 1.07L12 17.418l4.795 2.733a1 1 0 0 0 1.474-1.071l-1.117-5.405 4.08-3.716a1 1 0 0 0-.563-1.733l-5.485-.607-2.273-5.03z"
-                                            fill="#ffffff"></path>
-                                    </svg>
-                                </span>
-
-                            </div>
-                        </span>
-                        <span class="price">
-                            &#x20b9; {{mess.one_time}}/Per Person
-                        </span>
-                    </div>
-                </a>
-            </div>
-
+        <div class="reg-container">
+            <form  ng-app = "feasta" ng-controller = "getRegisterController">
+                <img class = "avatar" src='/static/img/profile.svg'>
+                <h2>Register</h2>
+                <div class="reg div one">
+                <div>
+                    <h5>First Name</h5>
+                    <input type="text" class="input" ng-model = "first_name">
+                </div>
+                <div>
+                    <h5>Last Name</h5>
+                    <input type="text" class="input" ng-model = "last_name">
+                </div>
+                <div>
+                    <h5>Email</h5>
+                    <input type="email" class="input" ng-model = "email">
+                </div>
+                <div>
+                    <h5>Contact</h5>
+                    <input type="text" class="input" ng-model = "phone_no">
+                </div>
+                <div>
+                    <h5>Address</h5>
+                    <input type="text" class="input" ng-model = "address">
+                </div>
+                <div>
+                    <h5>Location</h5>
+                    <input type="text" class="input" ng-model = "location">
+                <div>
+                    <h5>PASSWORD</h5>
+                    <input type="password" class="input" ng-model = "password1">
+                </div>
+                <div>
+                    <h5>CONFIRM PASSWORD</h5>
+                    <input type="password" class="input" ng-model = "password2">
+                </div>
+                <input type="submit" class="btn" value="REGISTER" ng-click = "SendData()">
+            </form>
         </div>
-    </section>
+    </div>
 </main>

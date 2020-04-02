@@ -6,7 +6,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from rest_framework import viewsets
 from rest_framework import serializers
-from register.models import User, ShopOwner
 # Create your views here.
 
 # class UserSession(serializers.ModelSerializer):

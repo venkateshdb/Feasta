@@ -29,6 +29,9 @@ DEBUG = True
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
                  'feasta.herokuapp.com', '192.168.43.28']
 
+#Specifying Usermodel for users
+AUTH_USER_MODEL = 'register.Profile'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,11 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_yasg',
     'corsheaders',
     'mess',
     'login',
     'register',
+    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -134,6 +139,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)

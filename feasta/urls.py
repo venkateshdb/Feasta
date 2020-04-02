@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf import settings
+from django.conf.urls import static
+from register.views import UserApiView
 # remove in production
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -36,7 +38,7 @@ urlpatterns = [
     path('', include('mess.urls')),
     path('login/', include('login.urls')),
     path('admin/', admin.site.urls),
-    path('register/', include('register.urls')),
+    path(api(), include('register.urls')),
     path(api(), include('mess.urls')),
     url(r'^(?P<path>.*)/', include('mess.urls')),
     url(r'^swagger(?P<format>\.json|\.yaml)$',
@@ -46,3 +48,6 @@ urlpatterns = [
     url(r'^redoc/$', schema_view.with_ui('redoc',
                                          cache_timeout=0), name='schema-redoc'),
 ]
+
+
+# urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

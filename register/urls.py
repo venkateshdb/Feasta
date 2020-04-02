@@ -1,18 +1,13 @@
 from django.urls import path
-from .views import RegView, UserLogin, ShopLogin
+from rest_framework.authtoken.views import obtain_auth_token
+from .views import RegView, UserApiView
 
 urlpatterns = [
     path('', RegView.as_view(), name="register"),
-    path('get-user/', UserLogin.as_view({'get': 'get',
+    path('login', obtain_auth_token, name ="Api Login"),
+    path('get-user/', UserApiView.as_view({'get': 'get',
                                          'post': 'post'}), name="UserRegister-api-view"),
-    path('get-user/<str:id>/', UserLogin.as_view({
-        'get': 'retrieve',
-        'put': 'update',
-        'delete': 'destroy',
-    })),
-    path('get-shop/', ShopLogin.as_view({'get': 'get',
-                                         'post': 'post'}), name="ShopRegister-api-view"),
-    path('get-shop/<str:id>/', ShopLogin.as_view({
+    path('get-user/<str:id>/', UserApiView.as_view({
         'get': 'retrieve',
         'put': 'update',
         'delete': 'destroy',
